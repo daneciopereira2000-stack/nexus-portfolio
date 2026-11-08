@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="Perfil profissional de IT, Inteligência Artificial, automação e engenharia de software.">
+  <title>NEXUS | IT & Artificial Intelligence</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080d18;
+      --panel: #101a2b;
+      --text: #f4f7fc;
+      --muted: #a1aec1;
+      --accent: #75f0d0;
+      --border: rgba(255,255,255,.10);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    .glow {
+      position: fixed;
+      width: 380px;
+      height: 380px;
+      background: var(--accent);
+      opacity: .08;
+      filter: blur(130px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .glow.one { top: 10%; right: -180px; }
+    .glow.two { bottom: 5%; left: -180px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8,13,24,.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font: 700 25px 'Space Grotesk', sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 21px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #07131b;
+      font-weight: 800;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(117,240,208,.2);
+    }
+
+    .button.outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      color: white;
+      border: 0;
+      font-size: 27px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 65px;
+      padding-top: 75px;
+      padding-bottom: 90px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 23px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.12;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      letter-spacing: -3px;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-bottom: 35px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      color: #bdc9d9;
+      padding: 7px 12px;
+      border-radius: 50px;
+      font-size: 11px;
+    }
+
+    .profile-card {
+      position: relative;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(145deg, #142137, #0b1220);
+      box-shadow: 0 30px 100px rgba(0,0,0,.3);
+    }
+
+    .profile-art {
+      min-height: 280px;
+      border-radius: 17px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(117,240,208,.25), transparent 42%),
+        linear-gradient(145deg, #142b40, #0a1120);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .orb {
+      width: 155px;
+      height: 155px;
+      border: 1px solid rgba(117,240,208,.8);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 65px;
+      color: var(--accent);
+      box-shadow: 0 0 60px rgba(117,240,208,.15), inset 0 0 35px rgba(117,240,208,.1);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      50% { transform: translateY(-13px) rotate(8deg); }
+    }
+
+    .profile-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-top: 22px;
+    }
+
+    .profile-info h3 { font-size: 21px; }
+
+    .profile-info p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status {
+      color: var(--accent);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    section { padding: 100px 0; }
+
+    .section-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 48px);
+      margin-bottom: 17px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 45px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .about-box, .service-card, .project-card {
+      border: 1px solid var(--border);
+      background: rgba(16,26,43,.75);
+      border-radius: 17px;
+      padding: 28px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 23px;
+      border-radius: 15px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--accent);
+      font: 700 30px 'Space Grotesk', sans-serif;
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .services, .projects {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 17px;
+    }
+
+    .service-card, .project-card { transition: .25s; }
+
+    .service-card:hover, .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(117,240,208,.5);
+    }
+
+    .service-icon {
+      color: var(--accent);
+      font-size: 29px;
+      margin-bottom: 22px;
+    }
+
+    .service-card h3, .project-card h3 {
+      font-size: 19px;
+      margin-bottom: 12px;
+    }
+
+    .service-card p, .project-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .project-number {
+      color: var(--accent);
+      font: 700 13px 'Space Grotesk', sans-serif;
+      margin-bottom: 22px;
+    }
+
+    .project-card .tag { display: inline-block; margin-top: 17px; }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tech {
+      padding: 15px 19px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: #d5e1ef;
+      font-size: 14px;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 75px 25px;
+      border-radius: 24px;
+      border: 1px solid rgba(117,240,208,.2);
+      background: radial-gradient(circle at 50% 0%, #173047, #0c1422 65%);
+    }
+
+    .contact h2 {
+      font-size: clamp(34px, 5vw, 55px);
+      margin-bottom: 18px;
+    }
+
+    .contact p {
+      color: var(--muted);
+      margin: 0 auto 28px;
+      max-width: 550px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    @media(max-width: 850px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; }
+      .profile-card { max-width: 500px; }
+      .services, .projects { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media(max-width: 600px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: #0b1423;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links .button { width: 100%; }
+      .hero { padding-top: 55px; min-height: auto; }
+      h1 { letter-spacing: -2px; }
+      section { padding: 70px 0; }
+      .about-grid, .services, .projects { grid-template-columns: 1fr; }
+      .profile-card { padding: 17px; }
+      .profile-art { min-height: 220px; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">NEXUS<span>.</span></a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#sobre">Sobre</a>
+          <a href="#servicos">Competências</a>
+          <a href="#projetos">Projectos</a>
+          <a href="#contacto" class="button">Contactar ↗</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">● IT PROFESSIONAL / AI INNOVATOR</div>
+
+          <h1>
+            Tecnologia inteligente.<br>
+            <span>Impacto real.</span>
+          </h1>
+
+          <p class="hero-copy">
+            Sou um profissional de tecnologia focado em Inteligência Artificial,
+            engenharia de software e automação. Transformo ideias complexas
+            em experiências digitais simples, inteligentes e eficientes.
+          </p>
+
+          <div class="actions">
+            <a href="#contacto" class="button">Vamos trabalhar juntos ↗</a>
+            <a href="#projetos" class="button outline">Ver projectos</a>
+          </div>
+
+          <div class="tags">
+            <span class="tag">Artificial Intelligence</span>
+            <span class="tag">IT Architecture</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-art">
+            <div class="orb">✳</div>
+          </div>
+
+          <div class="profile-info">
+            <div>
+              <h3>IT & AI Specialist</h3>
+              <p>Digital transformation architect</p>
+            </div>
+            <div class="status">● ONLINE</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre">
+        <div class="about-grid">
+          <div>
+            <div class="section-label">01 / Sobre mim</div>
+            <h2 class="section-title">A tecnologia deve resolver problemas, não criar mais.</h2>
+            <p class="section-description">
+              Combino pensamento estratégico, criatividade e tecnologia para
+              desenvolver soluções digitais que ajudam pessoas e organizações
+              a trabalhar melhor.
+            </p>
+          </div>
+
+          <div class="about-box">
+            <p>
+              Acredito numa tecnologia acessível, segura e preparada para o futuro.
+              O meu foco está na criação de sistemas inteligentes, processos
+              automatizados e experiências digitais de elevada qualidade.
+            </p>
+            <p>
+              Trabalho com uma mentalidade de inovação contínua: compreender,
+              desenhar, desenvolver, testar e evoluir.
+            </p>
+            <div class="stats">
+              <div class="stat">
+                <strong>AI</strong>
+                <span>Inteligência aplicada</span>
+              </div>
+              <div class="stat">
+                <strong>IT</strong>
+                <span>Infraestrutura e sistemas</span>
+              </div>
+              <div class="stat">
+                <strong>UX</strong>
+                <span>Experiência digital</span>
+              </div>
+              <div class="stat">
+                <strong>∞</strong>
+                <span>Aprendizagem contínua</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos">
+        <div class="section-label">02 / Competências</div>
+        <h2 class="section-title">O que faço.</h2>
+        <p class="section-description">
+          Tecnologia aplicada à produtividade, inovação e transformação digital.
+        </p>
+
+        <div class="services">
+          <article class="service-card">
+            <div class="service-icon">✳</div>
+            <h3>Inteligência Artificial</h3>
+            <p>Assistentes inteligentes, integração de modelos de IA e soluções empresariais baseadas em dados.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">⌘</div>
+            <h3>Desenvolvimento</h3>
+            <p>Aplicações web, plataformas digitais, arquitectura de software e sistemas integrados.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">↗</div>
+            <h3>Automação</h3>
+            <p>Automatização de processos, integração de ferramentas e optimização de operações.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">◈</div>
+            <h3>Cloud & Infraestrutura</h3>
+            <p>Arquitectura cloud, serviços digitais, implementação e gestão de infraestruturas.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">⬡</div>
+            <h3>Dados & Analytics</h3>
+            <p>Organização de dados, dashboards, indicadores e apoio inteligente à decisão.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">◎</div>
+            <h3>Segurança Digital</h3>
+            <p>Boas práticas de segurança, controlo de acessos e protecção de informação.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projetos">
+        <div class="section-label">03 / Portfolio</div>
+        <h2 class="section-title">Ideias transformadas em soluções.</h2>
+        <p class="section-description">
+          Exemplos de projectos que podem representar o teu trabalho.
+          Substitui-os pelos teus projectos reais antes de publicar.
+        </p>
+
+        <div class="projects">
+          <article class="project-card">
+            <div class="project-number">PROJECT / 001</div>
+            <h3>Enterprise AI Platform</h3>
+            <p>Uma plataforma inteligente para centralizar operações empresariais, automatizar processos e apoiar decisões.</p>
+            <span class="tag">AI · ERP · Automation</span>
+          </article>
+
+          <article class="project-card">
+            <div class="project-number">PROJECT / 002</div>
+            <h3>Smart Business Analytics</h3>
+            <p>Dashboards e sistemas de análise para transformar informação em decisões estratégicas.</p>
+            <span class="tag">Data · BI · Analytics</span>
+          </article>
+
+          <article class="project-card">
+            <div class="project-number">PROJECT / 003</div>
+            <h3>Intelligent Digital Services</h3>
+            <p>Experiências digitais integradas para melhorar a comunicação, os serviços e a produtividade.</p>
+            <span class="tag">Cloud · Web · UX</span>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">04 / Tecnologias</div>
+        <h2 class="section-title">O meu universo tecnológico.</h2>
+        <p class="section-description">
+          Tecnologias e ferramentas que podem integrar o teu perfil profissional.
+          Mantém apenas aquelas que realmente dominas.
+        </p>
+
+        <div class="tech-list">
+          <span class="tech">Artificial Intelligence</span>
+          <span class="tech">OpenAI</span>
+          <span class="tech">Python</span>
+          <span class="tech">JavaScript</span>
+          <span class="tech">React</span>
+          <span class="tech">Supabase</span>
+          <span class="tech">PostgreSQL</span>
+          <span class="tech">Microsoft 365</span>
+          <span class="tech">Cloud Computing</span>
+          <span class="tech">n8n</span>
+          <span class="tech">Cybersecurity</span>
+          <span class="tech">Power BI</span>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <div class="contact">
+          <div class="section-label">05 / Vamos conversar</div>
+          <h2>Vamos construir o futuro?</h2>
+          <p>
+            Tens um projecto, uma ideia ou um desafio tecnológico?
+            Estou disponível para conversar sobre novas oportunidades.
+          </p>
+          <a class="button" href="mailto:teuemail@exemplo.com">
+            Enviar email ↗
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> NEXUS. IT & Artificial Intelligence.</span>
+      <span>Designed for the future. Built with purpose.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+  </script>
+</body>
+</html>
